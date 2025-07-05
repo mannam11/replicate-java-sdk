@@ -10,6 +10,27 @@ A Java SDK for interacting with the Replicate API, enabling seamless integration
 - Fluent builder pattern for easy configuration
 - Type-safe request/response handling
 
+## Installation
+
+### Gradle
+Add the following dependency to your `build.gradle` file:
+
+```gradle
+implementation group: 'io.github.mannam11', name: 'replicate-java-sdk', version: '1.0.1'
+```
+
+### Maven
+Add the following dependency to your `pom.xml` file:
+
+```xml
+<dependency>
+    <groupId>io.github.mannam11</groupId>
+    <artifactId>replicate-java-sdk</artifactId>
+    <version>1.0.1</version>
+</dependency>
+```
+
+
 ## Quick Start
 
 ### 1. Get your API Key
@@ -94,53 +115,6 @@ PredictionResponse response = client.predict(request);
 - Java 8 or higher
 - Internet connection for API calls
 - Valid Replicate API key
-
-## Contributing
-
-We welcome contributions! Please feel free to submit issues and pull requests.
-
-### Development Setup
-
-1. Clone the repository:
-```bash
-git clone https://github.com/mannam11/replicate-java-sdk.git
-cd replicate-java-sdk
-```
-
-2. Build the project:
-```bash
-./mvnw clean compile
-```
-
-3. Create a Main class to test the SDK, Add the following code to Main.java:
-```java
-
-public class Main {
-    public static void main(String[] args) {
-        // Initialize the client
-        ReplicateClient client = new ReplicateClient.Builder()
-                .apiKey("YOUR_API_KEY_HERE") // Replace with your actual API key
-                .build();
-        
-        // Example 1: Image Generation
-        Map<String, Object> input = Map.of(
-                "prompt", "A highly detailed, realistic Tyrannosaurus rex standing in a lush, prehistoric Cretaceous forest at sunset, with dramatic lighting highlighting its textured scales and powerful build. The background features dense ferns and towering ancient trees, with mist rising from the forest floor, creating a cinematic and lifelike atmosphere."
-        );
-        
-        ModelRequest model = new ModelRequest.Builder()
-                .owner("google")
-                .model("imagen-4")
-                .build();
-                
-        PredictionRequest request = new PredictionRequest.Builder()
-                .input(input)
-                .model(model)
-                .build();
-
-        PredictionResponse response = client.predict(request);
-    }
-}
-```
 
 ## License
 
