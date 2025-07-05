@@ -2,10 +2,13 @@
 
 A Java SDK for interacting with the Replicate API, enabling seamless integration of machine learning models into your Java applications.
 
-## Features
+## ✅ Features
 
-- ✅ **Text input ➝ Text output** - Generate text responses from text prompts
-- ✅ **Text input ➝ Image output** - Generate images from text descriptions
+- ✅ **Text input ➝ Text output** – Generate text responses from text prompts
+- ✅ **Text input ➝ Image output (URL)** – Generate images from text descriptions, returned as image URLs
+- ✅ **Image input ➝ Image output (URL)** – Transform or enhance images, with the result returned as a URL
+- ✅ **Text input ➝ Video output (URL)** – Generate videos from prompts, with the video returned as a downloadable URL
+
 
 ## Installation
 
@@ -97,6 +100,27 @@ ModelRequest model = new ModelRequest.Builder()
     .owner("stability-ai")
     .model("stable-diffusion-xl")
     .build();
+
+PredictionRequest request = new PredictionRequest.Builder()
+    .input(input)
+    .model(model)
+    .build();
+
+PredictionResponse response = client.predict(request);
+```
+
+### 🖼️ Image-to-Image (`input_image`)
+
+```java
+Map<String, Object> input = Map.of(
+    "input_image", "path/to/your/local/image.jpg (or) hosted image url",  
+    "prompt", "Convert this photo into a Van Gogh style painting"
+);
+
+ModelRequest model = new ModelRequest.Builder()
+        .owner("black-forest-labs")
+        .model("flux-kontext-pro")
+        .build();
 
 PredictionRequest request = new PredictionRequest.Builder()
     .input(input)
