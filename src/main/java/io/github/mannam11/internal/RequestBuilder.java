@@ -1,14 +1,12 @@
 package io.github.mannam11.internal;
 
 import io.github.mannam11.model.request.PredictionRequest;
-import io.github.mannam11.utils.FileUtil;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
 import java.io.File;
-import java.io.IOException;
 
 public class RequestBuilder {
 
@@ -35,26 +33,21 @@ public class RequestBuilder {
     }
 
     public static Request buildFileUploadRequest(File file, String apiKey) {
-        try{
-            String mimeType = FileUtil.getMimeType(file);
 
-            MultipartBody requestBody = new MultipartBody.Builder()
-                    .setType(MultipartBody.FORM)
-                    .addFormDataPart(
-                            "content",
-                            file.getName(),
-                            RequestBody.create(file, MediaType.parse("application/octet-stream"))
-                    )
-                    .build();
+        MultipartBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart(
+                        "content",
+                        file.getName(),
+                        RequestBody.create(file, MediaType.parse("application/octet-stream"))
+                )
+                .build();
 
-            return new Request.Builder()
-                    .url(IMG_UPLOAD_BASE_URL)
-                    .post(requestBody)
-                    .addHeader("Authorization", "Bearer " + apiKey)
-                    .build();
-        }catch (IOException e) {
-            throw new RuntimeException("Building file upload request failed");
-        }
+        return new Request.Builder()
+                .url(IMG_UPLOAD_BASE_URL)
+                .post(requestBody)
+                .addHeader("Authorization", "Bearer " + apiKey)
+                .build();
     }
 
 }
