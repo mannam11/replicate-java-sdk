@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.mannam11.exception.ReplicateApiException;
 import io.github.mannam11.exception.ReplicateException;
-import io.github.mannam11.model.response.PredictionResponse;
 import okhttp3.Response;
 
 import java.io.IOException;
@@ -13,14 +12,14 @@ import java.io.IOException;
 public class ResponseHandler {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    public static PredictionResponse handle(Response response) throws IOException {
+    public static <T> T handleResponse(Response response, Class<T> clazz) throws IOException {
         String responseBody = response.body() != null ? response.body().string() : "";
         if (!response.isSuccessful()) {
             handleError(response.code(), responseBody);
         }
 
         try {
-            return objectMapper.readValue(responseBody, PredictionResponse.class);
+            return objectMapper.readValue(responseBody, clazz);
         } catch (JsonProcessingException e) {
             throw new ReplicateException("Failed to parse API response", e);
         }
