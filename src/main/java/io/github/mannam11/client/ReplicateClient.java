@@ -60,8 +60,6 @@ public class ReplicateClient {
             String requestBody = objectMapper.writeValueAsString(predictionRequest);
             Request httpRequest = RequestBuilder.build(predictionRequest, requestBody, apiKey, BASE_URL);
 
-            System.out.println("httpRequest : " + httpRequest.toString());
-
             Call call = okHttpClient.newCall(httpRequest);
             try (Response response = call.execute()) {
                 return ResponseHandler.handle(response);
