@@ -16,7 +16,7 @@ A Java SDK for interacting with the Replicate API, enabling seamless integration
 Add the following dependency to your `build.gradle` file:
 
 ```gradle
-implementation group: 'io.github.mannam11', name: 'replicate-java-sdk', version: '1.0.1'
+implementation group: 'io.github.mannam11', name: 'replicate-java-sdk', version: '1.0.2'
 ```
 
 ### Maven
@@ -26,7 +26,7 @@ Add the following dependency to your `pom.xml` file:
 <dependency>
     <groupId>io.github.mannam11</groupId>
     <artifactId>replicate-java-sdk</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
