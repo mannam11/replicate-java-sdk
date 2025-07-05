@@ -6,9 +6,6 @@ A Java SDK for interacting with the Replicate API, enabling seamless integration
 
 - ✅ **Text input ➝ Text output** - Generate text responses from text prompts
 - ✅ **Text input ➝ Image output** - Generate images from text descriptions
-- Simple and intuitive API design
-- Fluent builder pattern for easy configuration
-- Type-safe request/response handling
 
 ## Installation
 
